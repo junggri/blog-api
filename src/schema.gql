@@ -1,0 +1,289 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  access_token: String!
+}
+
+input DashBoardInput {
+  frequency: dashBoardFrequency!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Google {
+  createdAt: DateTime!
+  hashId: ID!
+  id: Int!
+  rows: Float!
+  totalsForAllResults: Result!
+  updatedAt: DateTime
+}
+
+input HashIdInput {
+  hashId: String!
+}
+
+type HashIds {
+  hashIds: [String!]!
+}
+
+type Hit {
+  createdAt: DateTime!
+  hashId: ID!
+  id: Int!
+  updatedAt: DateTime
+}
+
+input HitInput {
+  postHashId: String!
+}
+
+input LikeInput {
+  postHashId: String!
+}
+
+type Likes {
+  createdAt: DateTime!
+  hashId: ID!
+  id: Int!
+  updatedAt: DateTime
+}
+
+type Message {
+  content: String!
+  createdAt: DateTime!
+  email: String!
+  hashId: ID!
+  id: Int!
+  name: String!
+  phoneNumber: String!
+  updatedAt: DateTime
+}
+
+input MessageInput {
+  content: String!
+  email: String!
+  name: String!
+  phoneNumber: String!
+}
+
+input MessageReplyInput {
+  content: String!
+  email: String!
+  subject: String!
+}
+
+type Mutation {
+  createHit(data: HitInput!): String
+  createLike(data: LikeInput!): [String!]
+  createMessage(data: MessageInput!): String!
+  createVisit(data: VisitInput!): Int!
+  deletePost(data: HashIdInput!): String!
+  deleteReply(data: ReplyDeleteInput!): String!
+  deleteTag(data: TagDeleteInput!): String!
+  login(data: UserInput!): Auth!
+  replyMessage(data: MessageReplyInput!): String!
+  subscribe(data: SubscribeInput!): Subscribe!
+  toPrivate(data: HashIdInput!): String!
+  unsubscribe: Boolean!
+  upsertPost(data: PostInput!, file: Upload): Post!
+  upsertReply(data: ReplyCreateInput!): Reply!
+  upsertTag(data: TagInput!): Tag!
+}
+
+type PageEdge {
+  cursor: Float!
+  node: Post!
+}
+
+type PageInfo {
+  endCursor: Float
+  hasNextPage: Boolean
+}
+
+type PaginatedPost {
+  edges: [PageEdge!]!
+  leftCount: Float
+  pageInfo: PageInfo
+}
+
+input PaginationInput {
+  after: Float
+  filter: String = "open"
+  first: Float!
+}
+
+type Post {
+  content: String
+  createdAt: DateTime!
+  desc: String!
+  hashId: ID!
+  hit: [Hit!]
+  id: Int!
+  isPublished: Boolean!
+  likes: [Likes!]
+  open: Boolean!
+  originalContent: String
+  reply: [Reply!]
+  tag: [Tag!]!
+  thumbnail: String
+  title: String!
+  updatedAt: DateTime
+}
+
+input PostInput {
+  content: String!
+  desc: String!
+  hashId: ID
+  is_published: Boolean!
+  open: Boolean = true
+  originalContent: String!
+  tagIds: [Int!]!
+  thumbnail: String = null
+  title: String!
+}
+
+type Query {
+  getDashBoard(data: HashIdInput!): [Hit!]
+  getHashIdsToBuild: HashIds!
+  getLikeList: [String!]!
+  getMessage: [Message!]!
+  getReply(data: ReplyInput!): [Reply!]!
+  getS3Image(data: s3Input!): String!
+  getTags: [Tag!]!
+  getVideos(data: YoutubeInput!): Youtube!
+  getVisitDashboard(data: DashBoardInput!): [Visit!]
+  getVisitor: Google!
+  isSubscribe: Boolean!
+  post(data: HashIdInput!): Post!
+  posts(data: PaginationInput!): PaginatedPost
+  validate: String!
+}
+
+type Reply {
+  bgroup: Float!
+  comment: String!
+  createdAt: DateTime!
+  depth: Float!
+  hashId: ID!
+  id: Float!
+  parentId: Float
+  postId: Float
+  sorts: Float!
+  updatedAt: DateTime
+  writer: String!
+}
+
+input ReplyCreateInput {
+  comment: String!
+
+  """postHashId"""
+  hashId: String!
+  parentId: Float
+  postTitle: String!
+
+  """replyHashId"""
+  replyHashId: String
+  writer: String!
+}
+
+input ReplyDeleteInput {
+  hashId: String!
+  replyIds: [Int!]!
+}
+
+input ReplyInput {
+  hashId: String!
+}
+
+type Result {
+  session: String!
+  user: String!
+}
+
+type Subscribe {
+  createdAt: DateTime!
+  email: String!
+  hashId: ID!
+  id: Int!
+  name: String!
+  phoneNumber: String!
+  updatedAt: DateTime
+}
+
+input SubscribeInput {
+  email: String!
+  name: String!
+  phoneNumber: String!
+}
+
+type Tag {
+  createdAt: DateTime!
+  hashId: ID!
+  id: Int!
+  post: [Post!]!
+  tag: String!
+  updatedAt: DateTime
+}
+
+input TagDeleteInput {
+  hashId: String!
+}
+
+input TagInput {
+  hashId: String
+  tagName: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UserInput {
+  password: String!
+  username: String!
+}
+
+type Visit {
+  city: String!
+  count: Float!
+  country: String!
+  createdAt: DateTime!
+  hashId: ID!
+  id: Int!
+  regionAddress: String!
+  regionName: String!
+  updatedAt: DateTime
+}
+
+input VisitInput {
+  lat: Float!
+  lon: Float!
+}
+
+type Youtube {
+  data: String!
+  nextPageToken: String
+}
+
+input YoutubeInput {
+  nextPageToken: String
+}
+
+enum dashBoardFrequency {
+  FIFTEEN_DAY
+  ONE_DAY
+  ONE_MONTH
+  SEVEN_DAY
+  SIX_MONTH
+  THREE_MONTH
+}
+
+input s3Input {
+  data: String!
+  path: String!
+}

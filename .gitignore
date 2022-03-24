@@ -1,0 +1,10 @@
+deploy
+dist
+node_modules
+.env.development
+.env.production
+.dockerignore
+docker-compose.yml
+Dockerfile
+ormconfig.ts
+test

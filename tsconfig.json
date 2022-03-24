@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2015",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@interface/*": [
+        "interface/*"
+      ],
+      "@exception/*": [
+        "exception/*"
+      ],
+      "@decorator/*": [
+        "decorator/*"
+      ]
+    }
+  }
+}

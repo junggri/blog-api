@@ -1,0 +1,28 @@
+{
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": false,
+        "displayName": true,
+        "preprocess": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "@src": "./src",
+          "@utils": "./utils",
+          "@config": "./config",
+          "@interface": "./interface",
+          "@exception": "./exception",
+          "@decorator": "./decorator"
+        }
+      }
+    ]
+  ]
+}
