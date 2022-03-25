@@ -128,7 +128,6 @@ type Post {
   isPublished: Boolean!
   likes: [Likes!]
   open: Boolean!
-  originalContent: String
   reply: [Reply!]
   tag: [Tag!]!
   thumbnail: String
@@ -142,7 +141,6 @@ input PostInput {
   hashId: ID
   is_published: Boolean!
   open: Boolean = true
-  originalContent: String!
   tagIds: [Int!]!
   thumbnail: String = null
   title: String!

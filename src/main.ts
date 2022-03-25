@@ -21,8 +21,7 @@ async function bootstrap() {
     ]
   ));
 
-  app.use(session(Session.create()))
-    .use(compression())
+  app.use(compression())
     .use(cookieParser())
     .use(graphqlUploadExpress({maxFileSize: 10000000, maxFiles: 10}));
 

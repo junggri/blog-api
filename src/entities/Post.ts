@@ -19,11 +19,11 @@ export class Post extends Base {
   @Column("varchar")
   desc: string;
 
-  @Field({nullable:true})
+  @Field({nullable: true})
   content?: string;
 
-  @Field({nullable:true})
-  originalContent?: string;
+  // @Field({nullable:true})
+  // originalContent?: string;
 
   @Field({nullable: true})
   @Column({nullable: true, default: null})

@@ -11,7 +11,6 @@ import path from "path";
 import * as faker from "faker";
 import {PaginationInput} from "@src/pagination/input/pagination.input";
 import {PaginationService} from "@src/pagination/pagination.service";
-import {MessageService} from "@src/message/message.service";
 
 @Injectable()
 @EventSubscriber()
@@ -84,7 +83,7 @@ export class PostService implements EntitySubscriberInterface<Post> {
     }
 
     const contents = await this.fileService.getS3Data({path: "content", data: hashId});
-    const originalContent = await this.fileService.getS3Data({path: "content", data: hashId + "_original"});
+    // const originalContent = await this.fileService.getS3Data({path: "content", data: hashId + "_original"});
 
     const data = await this.postRepository
       .createQueryBuilder("post")
@@ -92,7 +91,7 @@ export class PostService implements EntitySubscriberInterface<Post> {
       .where("post.id =:id", {id: postId})
       .getOne();
 
-    data.originalContent = originalContent.data
+    // data.originalContent = originalContent.data
     data.content = contents.data;
     return data;
   }
@@ -210,7 +209,7 @@ export class PostService implements EntitySubscriberInterface<Post> {
 
     await this.upsertPostTag(postId, post.tagIds);
     await this.fileService.upsertContent(post.content, s3Filename);
-    await this.fileService.upsertContent(post.originalContent, s3Filename + "_original");
+    // await this.fileService.upsertContent(post.originalContent, s3Filename + "_original");
 
     const upsertPost = await this.postRepository
       .createQueryBuilder('post')
@@ -297,7 +296,7 @@ export class PostService implements EntitySubscriberInterface<Post> {
           updatedAt: faker.datatype.datetime(),
           title: `${i + 1}`,
           desc: faker.lorem.sentence(),
-          originalContent: faker.lorem.sentence(),
+          // originalContent: faker.lorem.sentence(),
           content: faker.lorem.sentence(),
           thumbnail: faker.lorem.sentence(),
           // isPublished: faker.random.boolean(),
