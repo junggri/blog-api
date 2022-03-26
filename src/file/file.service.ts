@@ -31,7 +31,6 @@ export class FileService {
 
     };
     await this.uploadToS3(input);
-
   }
 
 

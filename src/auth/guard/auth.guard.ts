@@ -1,6 +1,4 @@
-import {CanActivate, ExecutionContext, Injectable} from "@nestjs/common";
-import {Observable} from "rxjs";
-import {ConfigService} from "@nestjs/config";
+import {ExecutionContext, Injectable} from "@nestjs/common";
 import jwt from "jsonwebtoken"
 import {GqlExecutionContext} from "@nestjs/graphql";
 import {AuthGuard} from "@nestjs/passport";

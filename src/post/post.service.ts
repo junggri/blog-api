@@ -155,7 +155,6 @@ export class PostService implements EntitySubscriberInterface<Post> {
 
 
   async upsertPost(post: PostInput, file: FileUpload) {
-
     let insertResult;
     const isExistHashId = !!post.hashId;
     const isExistThumbnail = !!post.thumbnail;

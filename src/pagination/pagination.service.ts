@@ -15,6 +15,8 @@ export class PaginationService {
     query.take(first);
     query.orderBy("post.id", "DESC");
 
+    //open => 공개 비공기
+    //is_published => 저장 임시저장
     if (filter === "open") {
       query.where("open = :open", {open: 1});
     } else if (filter === "close") {

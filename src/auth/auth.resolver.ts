@@ -22,7 +22,6 @@ export class AuthResolver {
     }
 
     if (user) {
-      console.log(user)
       const token = await this.authService.login(data)
       return token
     }
